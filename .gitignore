@@ -1,0 +1,35 @@
+/src/generated/prisma
+# Node.js
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+
+# Cache
+.npm/
+.eslintcache
+.parcel-cache/
+.cache/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Operating System specific
+.DS_Store

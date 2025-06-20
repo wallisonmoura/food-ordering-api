@@ -5,7 +5,11 @@ import { CreateProductUseCase } from "./create-product.use-case"
 describe('CreateProductUseCase', () => {
   it('should create a product and call repository', async () => {
     const mockRepo: ProductRepository = {
-      create: jest.fn().mockResolvedValue(undefined)
+      create: jest.fn().mockResolvedValue(undefined),
+      findById: jest.fn(),
+      findAll: jest.fn(),
+      update: jest.fn(),
+      delete: jest.fn(),
     }
 
     const useCase = new CreateProductUseCase(mockRepo)

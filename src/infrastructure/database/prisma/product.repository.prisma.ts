@@ -3,6 +3,18 @@ import { ProductRepository } from "../../../domain/repositories/product.reposito
 import { prisma } from "./prisma.service";
 
 export class PrismaProductRepository implements ProductRepository {
+  findAll(): Promise<Product[]> {
+    throw new Error("Method not implemented.");
+  }
+  findById(productId: string): Promise<Product | null> {
+    throw new Error("Method not implemented.");
+  }
+  update(product: Product): Promise<Product> {
+    throw new Error("Method not implemented.");
+  }
+  delete(id: string): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
   async create(product: Product): Promise<void> {
     await prisma.product.create({
       data: {

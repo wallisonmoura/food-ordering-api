@@ -1,7 +1,7 @@
-import { Product } from "../../domain/entities/product.entity"
-import { ProductRepository } from "../../domain/repositories/product.repository"
-import { ImageUrl } from "../../domain/value-objects/image-url.vo"
-import { Price } from "../../domain/value-objects/price.vo"
+import { Product } from "../../../domain/entities/product.entity"
+import { ProductRepository } from "../../../domain/repositories/product.repository"
+import { ImageUrl } from "../../../domain/value-objects/image-url.vo"
+import { Price } from "../../../domain/value-objects/price.vo"
 import { FindProductByIdUseCase } from "./find-product-by-id.use-case"
 
 describe('FindProductByIdUseCase', () => {

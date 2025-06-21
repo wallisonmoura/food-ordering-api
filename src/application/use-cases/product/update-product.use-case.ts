@@ -1,7 +1,7 @@
-import { ProductRepository } from '../../domain/repositories/product.repository'
-import { Price } from '../../domain/value-objects/price.vo'
-import { ImageUrl } from '../../domain/value-objects/image-url.vo'
-import { Product } from '../../domain/entities/product.entity'
+import { Product } from "../../../domain/entities/product.entity"
+import { ProductRepository } from "../../../domain/repositories/product.repository"
+import { ImageUrl } from "../../../domain/value-objects/image-url.vo"
+import { Price } from "../../../domain/value-objects/price.vo"
 
 export interface UpdateProductInput {
   id: string

@@ -1,8 +1,8 @@
 import { DeleteProductUseCase } from './delete-product.use-case'
-import { ProductRepository } from '../../domain/repositories/product.repository'
-import { Product } from '../../domain/entities/product.entity'
-import { Price } from '../../domain/value-objects/price.vo'
-import { ImageUrl } from '../../domain/value-objects/image-url.vo'
+import { Product } from "../../../domain/entities/product.entity"
+import { ProductRepository } from "../../../domain/repositories/product.repository"
+import { ImageUrl } from "../../../domain/value-objects/image-url.vo"
+import { Price } from "../../../domain/value-objects/price.vo"
 
 describe('DeleteProductUseCase', () => {
   const mockProduct = new Product(

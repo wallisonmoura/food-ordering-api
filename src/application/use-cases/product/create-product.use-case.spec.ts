@@ -1,4 +1,3 @@
-
 import { ProductRepository } from "../../../domain/repositories/product.repository"
 import { CreateProductUseCase } from "./create-product.use-case"
 

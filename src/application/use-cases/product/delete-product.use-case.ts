@@ -1,4 +1,5 @@
-import { ProductRepository } from '../../domain/repositories/product.repository'
+import { ProductRepository } from "../../../domain/repositories/product.repository"
+
 
 export class DeleteProductUseCase {
   constructor(private readonly productRepository: ProductRepository) {}

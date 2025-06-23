@@ -46,11 +46,26 @@ export class Order {
     this.items.splice(index, 1)
   }
 
-  updateStatus(newStatus: OrderStatus): void {
-    if (this.status === OrderStatus.CANCELLED) {
-      throw new Error('Cannot update a cancelled order')
-    }
-
-    this.status = newStatus
+ updateStatus(newStatus: OrderStatus): void {
+  if (this.status === OrderStatus.CANCELLED || this.status === OrderStatus.COMPLETED) {
+    throw new Error(`Cannot update a ${this.status} order.`);
   }
+
+  const allowedTransitions: Record<OrderStatus, OrderStatus[]> = {
+    [OrderStatus.PENDING]: [OrderStatus.PAID, OrderStatus.CANCELLED],
+    [OrderStatus.PAID]: [OrderStatus.PREPARING, OrderStatus.CANCELLED],
+    [OrderStatus.PREPARING]: [OrderStatus.READY, OrderStatus.CANCELLED],
+    [OrderStatus.READY]: [OrderStatus.SHIPPED, OrderStatus.CANCELLED],
+    [OrderStatus.SHIPPED]: [OrderStatus.DELIVERED],
+    [OrderStatus.DELIVERED]: [OrderStatus.COMPLETED],
+    [OrderStatus.CANCELLED]: [],
+    [OrderStatus.COMPLETED]: []
+  };
+
+  if (!allowedTransitions[this.status].includes(newStatus)) {
+    throw new Error(`Invalid status transition from ${this.status} to ${newStatus}`);
+  }
+
+  this.status = newStatus;
+}
 }

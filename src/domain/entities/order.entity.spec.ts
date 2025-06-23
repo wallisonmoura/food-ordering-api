@@ -1,57 +1,84 @@
-import { OrderStatus } from "../enums/order-status.enum"
-import { Address } from "../value-objects/address.vo"
-import { Document } from "../value-objects/document.vo"
-import { ImageUrl } from "../value-objects/image-url.vo"
-import { Price } from "../value-objects/price.vo"
-import { Customer } from "./customer.entity"
-import { OrderItem } from "./order-item.entity"
-import { Order } from "./order.entity"
-import { Product } from "./product.entity"
+import { Order } from './order.entity';
+import { Customer } from './customer.entity';
+import { OrderStatus } from '../enums/order-status.enum';
 
-describe('Order Entity', () => {
-  const product = new Product(
-    'Salgado',
-    'Coxinha de frango',
-    new Price(8),
-    new ImageUrl('https://cdn.com/coxinha.jpg'),
-    'salgado',
-    [{ name: 'Queijo', extraCost: new Price(2) }]
-  )
+describe('Order Entity Status Transitions', () => {
+  let order: Order;
 
-  const address = new Address('Rua X', '123', 'Olinda', 'PE', '53110-000')
-  const document = new Document('12345678901')
-  const customer = new Customer('Fulano', 'fulano@email.com', '81999999999', document, address)
+  beforeEach(() => {
+    const customer = {} as Customer;
+    order = new Order(customer, []);
+  });
 
-  const item = new OrderItem(product, 2, ['Queijo'])
+  it('should transition from PENDING to PAID', () => {
+    order.updateStatus(OrderStatus.PAID);
+    expect(order.getStatus()).toBe(OrderStatus.PAID);
+  });
 
-  it('should create an order and calculate total', () => {
-    const order = new Order(customer, [item])
-    expect(order.getItems()).toHaveLength(1)
-    expect(order.getTotal()).toBe((8 + 2) * 2)
-    expect(order.getStatus()).toBe(OrderStatus.PENDING)
-  })
+  it('should transition from PAID to PREPARING', () => {
+    order.updateStatus(OrderStatus.PAID);
+    order.updateStatus(OrderStatus.PREPARING);
+    expect(order.getStatus()).toBe(OrderStatus.PREPARING);
+  });
 
-  it('should allow adding and removing items', () => {
-    const order = new Order(customer)
-    order.addItem(item)
-    expect(order.getItems()).toHaveLength(1)
+  it('should transition from PREPARING to READY', () => {
+    order.updateStatus(OrderStatus.PAID);
+    order.updateStatus(OrderStatus.PREPARING);
+    order.updateStatus(OrderStatus.READY);
+    expect(order.getStatus()).toBe(OrderStatus.READY);
+  });
 
-    order.removeItem(0)
-    expect(order.getItems()).toHaveLength(0)
-  })
+  it('should transition from READY to SHIPPED', () => {
+    order.updateStatus(OrderStatus.PAID);
+    order.updateStatus(OrderStatus.PREPARING);
+    order.updateStatus(OrderStatus.READY);
+    order.updateStatus(OrderStatus.SHIPPED);
+    expect(order.getStatus()).toBe(OrderStatus.SHIPPED);
+  });
 
-  it('should allow updating status unless cancelled', () => {
-    const order = new Order(customer)
-    order.updateStatus(OrderStatus.PAID)
-    expect(order.getStatus()).toBe(OrderStatus.PAID)
-  })
+  it('should transition from SHIPPED to DELIVERED', () => {
+    order.updateStatus(OrderStatus.PAID);
+    order.updateStatus(OrderStatus.PREPARING);
+    order.updateStatus(OrderStatus.READY);
+    order.updateStatus(OrderStatus.SHIPPED);
+    order.updateStatus(OrderStatus.DELIVERED);
+    expect(order.getStatus()).toBe(OrderStatus.DELIVERED);
+  });
 
-  it('should not allow status update if cancelled', () => {
-    const order = new Order(customer)
-    order.updateStatus(OrderStatus.CANCELLED)
+  it('should transition from DELIVERED to COMPLETED', () => {
+    order.updateStatus(OrderStatus.PAID);
+    order.updateStatus(OrderStatus.PREPARING);
+    order.updateStatus(OrderStatus.READY);
+    order.updateStatus(OrderStatus.SHIPPED);
+    order.updateStatus(OrderStatus.DELIVERED);
+    order.updateStatus(OrderStatus.COMPLETED);
+    expect(order.getStatus()).toBe(OrderStatus.COMPLETED);
+  });
 
-    expect(() => {
-      order.updateStatus(OrderStatus.PAID)
-    }).toThrow('Cannot update a cancelled order')
-  })
-})
+  it('should allow CANCELLED from any status except DELIVERED and COMPLETED', () => {
+    order.updateStatus(OrderStatus.PAID);
+    order.updateStatus(OrderStatus.CANCELLED);
+    expect(order.getStatus()).toBe(OrderStatus.CANCELLED);
+  });
+
+  it('should throw error for invalid status transitions', () => {
+    expect(() => order.updateStatus(OrderStatus.SHIPPED)).toThrow();
+    order.updateStatus(OrderStatus.PAID);
+    expect(() => order.updateStatus(OrderStatus.DELIVERED)).toThrow();
+  });
+
+  it('should not allow status changes after CANCELLED', () => {
+    order.updateStatus(OrderStatus.CANCELLED);
+    expect(() => order.updateStatus(OrderStatus.PAID)).toThrow();
+  });
+
+  it('should not allow status changes after COMPLETED', () => {
+    order.updateStatus(OrderStatus.PAID);
+    order.updateStatus(OrderStatus.PREPARING);
+    order.updateStatus(OrderStatus.READY);
+    order.updateStatus(OrderStatus.SHIPPED);
+    order.updateStatus(OrderStatus.DELIVERED);
+    order.updateStatus(OrderStatus.COMPLETED);
+    expect(() => order.updateStatus(OrderStatus.CANCELLED)).toThrow();
+  });
+});

@@ -6,11 +6,25 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_DB: food_order_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: food_order_db
     volumes:
       - pgdata:/var/lib/postgresql/data
 
+  postgres_test:
+    image: postgres:16-alpine
+    container_name: food_order_postgres_test
+    restart: always
+    ports:
+      - '5433:5432'           # Outra porta para testes
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: food_order_test
+    volumes:
+      - pgdata_test:/var/lib/postgresql/data
+
 volumes:
   pgdata:
+  pgdata_test:

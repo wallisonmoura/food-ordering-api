@@ -10,17 +10,113 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgresql" // ou "sqlite" para testes locais
   url      = env("DATABASE_URL")
 }
 
+// ENUNS
+enum OrderStatus {
+  PENDING
+  PAID
+  PREPARING
+  READY
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  COMPLETED
+}
+
+enum PaymentMethod {
+  CASH
+  CREDIT_CARD
+  DEBIT_CARD
+  PIX
+}
+
+enum PaymentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+// CATEGORY
+model Category {
+  id           String    @id @default(uuid())
+  name         String
+  description  String
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  products     Product[]
+}
+
+// CUSTOMER
+model Customer {
+  id            String    @id @default(uuid())
+  name          String
+  email         String    @unique
+  phone         String
+  document      String
+  addressStreet String
+  addressNumber String
+  addressCity   String
+  addressState  String
+  addressZipCode String
+  createdAt    DateTime  @default(now())
+  orders        Order[]
+}
+
+// PRODUCT
 model Product {
   id             String           @id @default(uuid())
   name           String
   description    String
   price          Float
   imageUrl       String
-  category       String
-  customizations Json             // armazenamos como JSON
-  createdAt      DateTime         @default(now())
+  categoryId     String
+  category       Category         @relation(fields: [categoryId], references: [id])
+  customizations Customization[]
+  orderItems     OrderItem[]      // 👈 Adição necessária
+}
+
+// CUSTOMIZATION
+model Customization {
+  id        String  @id @default(uuid())
+  name      String
+  extraCost Float
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+// ORDER
+model Order {
+  id           String       @id @default(uuid())
+  customerId   String
+  status       OrderStatus
+  createdAt    DateTime    @default(now())
+  customer     Customer     @relation(fields: [customerId], references: [id])
+  items        OrderItem[]
+  payments     Payment[]
+}
+
+// ORDER ITEM
+model OrderItem {
+  id            String    @id @default(uuid())
+  orderId       String
+  productId     String
+  quantity      Int
+  customizations String
+  order        Order      @relation(fields: [orderId], references: [id])
+  product      Product    @relation(fields: [productId], references: [id])
+}
+
+// PAYMENT
+model Payment {
+  id        String        @id @default(uuid())
+  orderId   String
+  method    PaymentMethod
+  amount    Float
+  status    PaymentStatus
+  createdAt DateTime      @default(now())
+  order     Order           @relation(fields: [orderId], references: [id])
 }

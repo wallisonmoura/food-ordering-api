@@ -6,7 +6,12 @@
     "dev": "ts-node-dev --respawn --transpile-only src/main/server.ts",
     "build": "tsc",
     "start": "node dist/main/server.js",
-    "test": "jest"
+    "test": "jest",
+    "test:unit": "jest --testPathPatterns=tests/unit",
+    "test:integration": "cross-env DOTENV_CONFIG_PATH=.env.test jest --testPathPatterns=tests/integration --runInBand",
+    "migrate:dev": "prisma migrate dev",
+    "migrate:test": "cross-env DOTENV_CONFIG_PATH=.env.test prisma migrate dev",
+    "generate": "prisma generate"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +27,7 @@
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
+    "cross-env": "^7.0.3",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.31.0",

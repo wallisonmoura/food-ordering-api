@@ -1,6 +1,6 @@
-import { Product } from "../entities/product.entity"
-import { ImageUrl } from "../value-objects/image-url.vo"
-import { Price } from "../value-objects/price.vo"
+import { Product } from "../../../../src/domain/entities/product.entity"
+import { ImageUrl } from "../../../../src/domain/value-objects/image-url.vo"
+import { Price } from "../../../../src/domain/value-objects/price.vo"
 
 describe('Product Entity', () => {
   it('should create a product with valid data', () => {

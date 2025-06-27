@@ -1,9 +1,9 @@
-import { UpdateOrderUseCase, UpdateOrderInput } from './update-order.use-case';
-import { OrderRepository } from '../../../domain/repositories/order.repository';
-import { Order } from '../../../domain/entities/order.entity';
-import { OrderStatus } from '../../../domain/enums/order-status.enum';
-import { Customer } from '../../../domain/entities/customer.entity';
-import { OrderItem } from '../../../domain/entities/order-item.entity';
+import { Order } from '../../../../../src/domain/entities/order.entity'
+import { UpdateOrderUseCase, UpdateOrderInput } from '../../../../../src/application/use-cases/order/update-order.use-case';
+import { OrderRepository } from '../../../../../src/domain/repositories/order.repository';
+import { OrderStatus } from '../../../../../src/domain/enums/order-status.enum';
+import { Customer } from '../../../../../src/domain//entities/customer.entity';
+import { OrderItem } from '../../../../../src/domain/entities/order-item.entity';
 
 describe('UpdateOrderUseCase', () => {
   const mockOrderRepository: OrderRepository = {

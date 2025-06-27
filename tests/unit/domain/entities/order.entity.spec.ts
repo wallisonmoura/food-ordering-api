@@ -1,6 +1,6 @@
-import { Order } from './order.entity';
-import { Customer } from './customer.entity';
-import { OrderStatus } from '../enums/order-status.enum';
+import { Order } from '../../../../src/domain/entities/order.entity'
+import { Customer } from '../../../../src/domain/entities/customer.entity'
+import { OrderStatus } from '../../../../src/domain/enums/order-status.enum'
 
 describe('Order Entity Status Transitions', () => {
   let order: Order;

@@ -1,15 +1,15 @@
-import { Customer } from "../../../domain/entities/customer.entity";
-import { OrderItem } from "../../../domain/entities/order-item.entity";
-import { Order } from "../../../domain/entities/order.entity";
-import { Customization, Product } from "../../../domain/entities/product.entity";
-import { CustomerRepository } from "../../../domain/repositories/customer.repository";
-import { OrderRepository } from "../../../domain/repositories/order.repository";
-import { ProductRepository } from "../../../domain/repositories/product.repository";
-import { Address } from "../../../domain/value-objects/address.vo";
-import { Document } from "../../../domain/value-objects/document.vo";
-import { ImageUrl } from "../../../domain/value-objects/image-url.vo";
-import { Price } from "../../../domain/value-objects/price.vo";
-import { CreateOrderUseCase } from "./create-order.use-case";
+import { Order } from '../../../../../src/domain/entities/order.entity'
+import { Customer } from "../../../../../src/domain/entities/customer.entity";
+import { OrderItem } from "../../../../../src/domain/entities/order-item.entity";
+import { Customization, Product } from "../../../../../src/domain/entities/product.entity";
+import { CustomerRepository } from "../../../../../src/domain/repositories/customer.repository";
+import { OrderRepository } from "../../../../../src/domain/repositories/order.repository";
+import { ProductRepository } from "../../../../../src/domain/repositories/product.repository";
+import { CreateOrderUseCase } from "../../../../../src/application/use-cases/order/create-order.use-case";
+import { Address } from "../../../../../src/domain/value-objects/address.vo"
+import { Document } from "../../../../../src/domain/value-objects/document.vo"
+import { ImageUrl } from "../../../../../src/domain/value-objects/image-url.vo";
+import { Price } from "../../../../../src/domain/value-objects/price.vo";
 
 describe('CreateOrderUseCase', () => {
   const mockOrderRepository: OrderRepository = {

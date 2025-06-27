@@ -1,5 +1,5 @@
-import { ProductRepository } from "../../../domain/repositories/product.repository"
-import { CreateProductUseCase } from "./create-product.use-case"
+import { ProductRepository } from '../../../../../src/domain/repositories/product.repository'
+import { CreateProductUseCase } from '../../../../../src/application/use-cases/product/create-product.use-case'
 
 
 describe('CreateProductUseCase', () => {

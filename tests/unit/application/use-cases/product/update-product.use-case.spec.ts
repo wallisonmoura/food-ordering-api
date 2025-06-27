@@ -1,8 +1,8 @@
-import { UpdateProductUseCase, UpdateProductInput } from './update-product.use-case'
-import { Product } from "../../../domain/entities/product.entity"
-import { ProductRepository } from "../../../domain/repositories/product.repository"
-import { ImageUrl } from "../../../domain/value-objects/image-url.vo"
-import { Price } from "../../../domain/value-objects/price.vo"
+import { UpdateProductUseCase, UpdateProductInput } from '../../../../../src/application/use-cases/product/update-product.use-case'
+import { Product } from '../../../../../src/domain/entities/product.entity'
+import { ProductRepository } from '../../../../../src/domain/repositories/product.repository'
+import { ImageUrl } from '../../../../../src/domain/value-objects/image-url.vo'
+import { Price } from '../../../../../src/domain/value-objects/price.vo'
 
 describe('UpdateProductUseCase', () => {
   const mockProduct = new Product(

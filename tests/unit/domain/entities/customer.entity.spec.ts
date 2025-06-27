@@ -1,6 +1,6 @@
-import { Address } from "../value-objects/address.vo"
-import { Document } from "../value-objects/document.vo"
-import { Customer } from "./customer.entity"
+import { Address } from '../../../../src/domain/value-objects/address.vo'
+import { Document } from '../../../../src/domain/value-objects/document.vo'
+import { Customer } from '../../../../src/domain/entities/customer.entity'
 
 describe('Customer Entity', () => {
   const address = new Address('Rua A', '123', 'Recife', 'PE', '50000-000')

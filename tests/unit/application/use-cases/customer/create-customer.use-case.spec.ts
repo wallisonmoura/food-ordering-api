@@ -1,8 +1,8 @@
-import { Customer } from "../../../domain/entities/customer.entity"
-import { CustomerRepository } from "../../../domain/repositories/customer.repository"
-import { Address } from "../../../domain/value-objects/address.vo"
-import { Document } from "../../../domain/value-objects/document.vo"
-import { CreateCustomerUseCase } from "./create-customer.use-case"
+import { Customer } from '../../../../../src/domain/entities/customer.entity'
+import { Address } from '../../../../../src/domain/value-objects/address.vo'
+import { Document } from '../../../../../src/domain/value-objects/document.vo'
+import { CustomerRepository } from '../../../../../src/domain/repositories/customer.repository'
+import { CreateCustomerUseCase } from '../../../../../src/application/use-cases/customer/create-customer.use-case'
 
 describe('CreateCustomerUseCase', () => {
   const mockRepository: CustomerRepository = {

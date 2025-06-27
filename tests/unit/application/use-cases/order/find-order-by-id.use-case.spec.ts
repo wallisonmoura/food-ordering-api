@@ -1,6 +1,6 @@
-import { FindOrderByIdUseCase } from './find-order-by-id.use-case';
-import { OrderRepository } from '../../../domain/repositories/order.repository';
-import { Order } from '../../../domain/entities/order.entity';
+import { Order } from '../../../../../src/domain/entities/order.entity'
+import { FindOrderByIdUseCase } from '../../../../../src/application/use-cases/order/find-order-by-id.use-case';
+import { OrderRepository } from "../../../../../src/domain/repositories/order.repository";
 
 describe('FindOrderByIdUseCase', () => {
   const mockOrderRepository: OrderRepository = {

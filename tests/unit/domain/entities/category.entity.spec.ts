@@ -1,4 +1,4 @@
-import { Category } from "./category.entity"
+import { Category } from "../../../../src/domain/entities/category.entity"
 
 describe('Category Entity', () => {
   it('should create a category with valid data', () => {

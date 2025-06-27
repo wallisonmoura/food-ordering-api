@@ -1,9 +1,8 @@
-import { ListAllCustomersUseCase } from './list-all-customers.use-case';
-import { CustomerRepository } from '../../../domain/repositories/customer.repository';
-import { Customer } from '../../../domain/entities/customer.entity';
-import { Document } from '../../../domain/value-objects/document.vo';
-import { Address } from '../../../domain/value-objects/address.vo';
-
+import { Customer } from '../../../../../src/domain/entities/customer.entity'
+import { Address } from '../../../../../src/domain//value-objects/address.vo'
+import { Document } from '../../../../../src/domain//value-objects/document.vo'
+import { ListAllCustomersUseCase } from '../../../../../src/application/use-cases/customer/list-all-customers.use-case';
+import { CustomerRepository } from '../../../../../src/domain/repositories/customer.repository'
 describe('ListAllCustomersUseCase', () => {
   const mockRepository: CustomerRepository = {
     create: jest.fn(),

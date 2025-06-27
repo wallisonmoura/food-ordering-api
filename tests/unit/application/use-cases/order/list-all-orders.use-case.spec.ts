@@ -1,6 +1,6 @@
-import { ListAllOrdersUseCase } from './list-all-orders.use-case';
-import { OrderRepository } from '../../../domain/repositories/order.repository';
-import { Order } from '../../../domain/entities/order.entity';
+import { ListAllOrdersUseCase } from '../../../../../src/application/use-cases/order/list-all-orders.use-case';
+import { OrderRepository } from "../../../../../src/domain/repositories/order.repository";
+import { Order } from '../../../../../src/domain/entities/order.entity'
 
 describe('ListAllOrdersUseCase', () => {
   const mockOrderRepository: OrderRepository = {

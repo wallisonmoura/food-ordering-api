@@ -1,8 +1,8 @@
-import { DeleteCustomerUseCase } from './delete-customer.use-case';
-import { CustomerRepository } from '../../../domain/repositories/customer.repository';
-import { Customer } from '../../../domain/entities/customer.entity';
-import { Document } from '../../../domain/value-objects/document.vo';
-import { Address } from '../../../domain/value-objects/address.vo';
+import { Customer } from "../../../../../src/domain/entities/customer.entity"
+import { Address } from "../../../../../src/domain//value-objects/address.vo"
+import { Document } from "../../../../../src/domain//value-objects/document.vo"
+import { CustomerRepository } from "../../../../../src/domain/repositories/customer.repository"
+import { DeleteCustomerUseCase } from "../../../../../src/application/use-cases/customer/delete-customer.use-case"
 
 describe('DeleteCustomerUseCase', () => {
   const mockRepository: CustomerRepository = {

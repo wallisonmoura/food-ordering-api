@@ -1,6 +1,6 @@
-import { PaymentMethod } from "../enums/payment-method.enum"
-import { PaymentStatus } from "../enums/payment-status.enum"
-import { Payment } from "./payment.entity"
+import { PaymentMethod } from "../../../../src/domain/enums/payment-method.enum"
+import { PaymentStatus } from "../../../../src/domain/enums/payment-status.enum"
+import { Payment } from "../../../../src/domain/entities/payment.entity"
 
 describe('Payment Entity', () => {
   it('should create a payment with default status as pending', () => {

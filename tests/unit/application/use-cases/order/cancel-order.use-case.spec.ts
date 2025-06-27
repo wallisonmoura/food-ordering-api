@@ -1,9 +1,9 @@
-import { CancelOrderUseCase } from './cancel-order.use-case';
-import { OrderRepository } from '../../../domain/repositories/order.repository';
-import { Order } from '../../../domain/entities/order.entity';
-import { OrderItem } from '../../../domain/entities/order-item.entity';
-import { Customer } from '../../../domain/entities/customer.entity';
-import { OrderStatus } from '../../../domain/enums/order-status.enum';
+import { Order } from '../../../../../src/domain/entities/order.entity'
+import { OrderItem } from '../../../../../src/domain/entities/order-item.entity'
+import { Customer } from '../../../../../src/domain/entities/customer.entity'
+import { OrderStatus } from '../../../../../src/domain/enums/order-status.enum'
+import { CancelOrderUseCase } from '../../../../../src/application/use-cases/order/cancel-order.use-case'
+import { OrderRepository } from '../../../../../src/domain/repositories/order.repository';
 
 describe('CancelOrderUseCase', () => {
   const mockOrderRepository: OrderRepository = {

@@ -1,7 +1,7 @@
-import { ImageUrl } from "../value-objects/image-url.vo"
-import { Price } from "../value-objects/price.vo"
-import { OrderItem } from "./order-item.entity"
-import { Product } from "./product.entity"
+import { ImageUrl } from '../../../../src/domain/value-objects/image-url.vo'
+import { Price } from '../../../../src/domain/value-objects/price.vo'
+import { OrderItem } from '../../../../src/domain/entities/order-item.entity'
+import { Product } from '../../../../src/domain/entities/product.entity'
 
 describe('OrderItem Entity', () => {
   const baseProduct = new Product(

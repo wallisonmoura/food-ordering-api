@@ -54,7 +54,7 @@ describe('CancelOrderUseCase', () => {
     const useCase = new CancelOrderUseCase(mockOrderRepository);
 
     await expect(useCase.execute(order.id)).rejects.toThrow(
-      `Invalid status transition from delivered to cancelled`
+      `Invalid status transition from DELIVERED to CANCELLED`
     );
   });
 });

@@ -44,6 +44,6 @@ describe('UpdateOrderUseCase', () => {
 
     const useCase = new UpdateOrderUseCase(mockOrderRepository);
     await expect(useCase.execute(order.id, { status: OrderStatus.DELIVERED }))
-      .rejects.toThrow('Invalid status transition from paid to delivered');
+      .rejects.toThrow('Invalid status transition from PAID to DELIVERED');
   });
 });

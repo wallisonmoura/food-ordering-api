@@ -1,12 +1,12 @@
 export enum OrderStatus {
-  PENDING = 'pending',
-  PAID = 'paid',
-  PREPARING = 'preparing',
-  READY = 'ready',
-  SHIPPED = 'shipped',
-  DELIVERED = 'delivered',
-  CANCELLED = 'cancelled',
-  COMPLETED = 'completed',
+  PENDING = 'PENDING',
+  PAID = 'PAID',
+  PREPARING = 'PREPARING',
+  READY = 'READY',
+  SHIPPED = 'SHIPPED',
+  DELIVERED = 'DELIVERED',
+  CANCELLED = 'CANCELLED',
+  COMPLETED = 'COMPLETED',
 }
 
 // PENDING	Aguardando pagamento ou confirmação inicial.

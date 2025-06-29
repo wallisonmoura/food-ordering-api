@@ -5,12 +5,15 @@ import { PaymentMethod } from '../enums/payment-method.enum'
 export class Payment {
   public readonly id: string
   public readonly createdAt: Date
-  private status: PaymentStatus
+  private _status: PaymentStatus
+  private _method: PaymentMethod
+  public readonly orderId: string
+  public readonly amount: number
 
   constructor(
-    public readonly orderId: string,
-    public readonly method: PaymentMethod,
-    public readonly amount: number,
+    orderId: string,
+    method: PaymentMethod,
+    amount: number,
     status: PaymentStatus = PaymentStatus.PENDING,
     id?: string,
     createdAt?: Date
@@ -20,31 +23,46 @@ export class Payment {
 
     this.id = id ?? uuidv4()
     this.createdAt = createdAt ?? new Date()
-    this.status = status
+    this.orderId = orderId
+    this.amount = amount
+    this._status = status
+    this._method = method
   }
 
-  getStatus(): PaymentStatus {
-    return this.status
+  get status(): PaymentStatus {
+    return this._status
+  }
+
+  set status(status: PaymentStatus) {
+    this._status = status
+  }
+
+  get method(): PaymentMethod {
+    return this._method
+  }
+
+  set method(method: PaymentMethod) {
+    this._method = method
   }
 
   approve(): void {
-    if (this.status !== PaymentStatus.PENDING) {
+    if (this._status !== PaymentStatus.PENDING) {
       throw new Error('Only pending payments can be approved')
     }
-    this.status = PaymentStatus.APPROVED
+    this._status = PaymentStatus.APPROVED
   }
 
   reject(): void {
-    if (this.status !== PaymentStatus.PENDING) {
+    if (this._status !== PaymentStatus.PENDING) {
       throw new Error('Only pending payments can be rejected')
     }
-    this.status = PaymentStatus.REJECTED
+    this._status = PaymentStatus.REJECTED
   }
 
   cancel(): void {
-    if (this.status === PaymentStatus.APPROVED) {
+    if (this._status === PaymentStatus.APPROVED) {
       throw new Error('Cannot cancel an approved payment')
     }
-    this.status = PaymentStatus.CANCELLED
+    this._status = PaymentStatus.CANCELLED
   }
 }

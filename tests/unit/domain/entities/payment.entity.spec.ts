@@ -8,29 +8,29 @@ describe('Payment Entity', () => {
 
     expect(payment.id).toBeDefined()
     expect(payment.createdAt).toBeInstanceOf(Date)
-    expect(payment.getStatus()).toBe(PaymentStatus.PENDING)
+    expect(payment.status).toBe(PaymentStatus.PENDING)
   })
 
   it('should approve a pending payment', () => {
-    const payment = new Payment('order-123', PaymentMethod.CASH, 50)
+   const payment = new Payment('order-123', PaymentMethod.CASH, 50)
     payment.approve()
-    expect(payment.getStatus()).toBe(PaymentStatus.APPROVED)
+    expect(payment.status).toBe(PaymentStatus.APPROVED)
   })
 
   it('should reject a pending payment', () => {
-    const payment = new Payment('order-123', PaymentMethod.DEBIT_CARD, 100)
+   const payment = new Payment('order-123', PaymentMethod.DEBIT_CARD, 100)
     payment.reject()
-    expect(payment.getStatus()).toBe(PaymentStatus.REJECTED)
+    expect(payment.status).toBe(PaymentStatus.REJECTED)
   })
 
   it('should cancel a pending payment', () => {
     const payment = new Payment('order-123', PaymentMethod.CREDIT_CARD, 60)
     payment.cancel()
-    expect(payment.getStatus()).toBe(PaymentStatus.CANCELLED)
+    expect(payment.status).toBe(PaymentStatus.CANCELLED)
   })
 
   it('should throw if trying to cancel an approved payment', () => {
-    const payment = new Payment('order-123', PaymentMethod.PIX, 80)
+   const payment = new Payment('order-123', PaymentMethod.PIX, 80)
     payment.approve()
 
     expect(() => payment.cancel()).toThrow('Cannot cancel an approved payment')

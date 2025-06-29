@@ -26,7 +26,7 @@ describe('UpdatePaymentStatusUseCase', () => {
 
     const result = await useCase.execute({ paymentId: payment.id, status: PaymentStatus.APPROVED })
 
-    expect(result.getStatus()).toBe(PaymentStatus.APPROVED)
+    expect(result.status).toBe(PaymentStatus.APPROVED)
     expect(mockRepository.update).toHaveBeenCalledWith(payment)
   })
 
@@ -42,7 +42,7 @@ describe('UpdatePaymentStatusUseCase', () => {
 
     const result = await useCase.execute({ paymentId: payment.id, status: PaymentStatus.REJECTED })
 
-    expect(result.getStatus()).toBe(PaymentStatus.REJECTED)
+    expect(result.status).toBe(PaymentStatus.REJECTED)
   })
 
   it('should cancel status appropriately', async () => {
@@ -50,7 +50,7 @@ describe('UpdatePaymentStatusUseCase', () => {
 
     const result = await useCase.execute({ paymentId: payment.id, status: PaymentStatus.CANCELLED })
 
-    expect(result.getStatus()).toBe(PaymentStatus.CANCELLED)
+    expect(result.status).toBe(PaymentStatus.CANCELLED)
   })
 
   it('should throw error for invalid status', async () => {

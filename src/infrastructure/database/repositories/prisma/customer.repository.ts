@@ -1,8 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { Customer } from "../../../../domain/entities/customer.entity";
 import { CustomerRepository } from "../../../../domain/repositories/customer.repository";
-import { Document } from "../../../../domain/value-objects/document.vo";
-import { Address } from "../../../../domain/value-objects/address.vo";
 import { CustomerMapper } from "../../mapper/customer.mapper";
 
 export class CustomerRepositoryPrisma implements CustomerRepository {
